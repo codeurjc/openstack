@@ -5,8 +5,6 @@ ROOT_PATH="${PWD}"
 MODE="none"
 API_FILES_NAME="" # Define by user with the file with the API variables for Openstack
 
-[ ! -d "${FOLDER_CONFIG}" ] && mkdir -p "${FOLDER_CONFIG}"
-
 while getopts 'p:m:' flag; do
   case "${flag}" in
     p) ROOT_PATH="${OPTARG}" ;;
@@ -15,6 +13,9 @@ while getopts 'p:m:' flag; do
 done
 
 FOLDER_CONFIG="${ROOT_PATH}/.control-instance-config"
+
+# Create folder if don't exist
+[ ! -d "${FOLDER_CONFIG}" ] && mkdir -p "${FOLDER_CONFIG}"
 
 printf "  Running the script in the path '%s'" "${ROOT_PATH}"
 printf "\n  Running in Mode '%s'" "${MODE}"
