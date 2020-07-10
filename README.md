@@ -1,1 +1,1 @@
-# openstack
+# Openstack Admin scripts and tutorials
