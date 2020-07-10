@@ -2,7 +2,8 @@
 
 # Make sure only root can run our script
 if [ "$(id -u)" != "0" ]; then
-   printf "This script must be run as root\n" 1>&2
+   printf "This script must be run as root" 1>&2
+   printf "\n"
    exit 1
 fi
 
@@ -24,7 +25,8 @@ sh -c "echo ${POWER_ON_DATE} > /sys/class/rtc/rtc0/wakealarm"
 SAVED_SCHEDULED=$(cat /sys/class/rtc/rtc0/wakealarm)
 
 if [ "${POWER_ON_DATE}" != "${SAVED_SCHEDULED}" ]; then
-    printf "Error when define scheduled power off, please try again\n"
+    printf "Error when define scheduled power off, please try again"
+    printf "\n"
 else 
     printf "Power on scheduled for:"
     printf "\n  %s" "$(date -d "@${SAVED_SCHEDULED}")"

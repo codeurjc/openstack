@@ -9,7 +9,7 @@ fi
 echo "Running the script in the path: ${ROOT_PATH}"
 
 FOLDER_INSTANCES="${ROOT_PATH}/.save-running-instances"
-API_FILES_NAME=""
+API_FILES_NAME="" # Define by user with the file with the API variables for Openstack
 
 [ ! -d "${FOLDER_INSTANCES}" ] && mkdir -p "${FOLDER_INSTANCES}"
 

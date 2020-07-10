@@ -2,9 +2,8 @@
 PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$"
 
 ROOT_PATH="${PWD}"
-MODE=""
-FOLDER_CONFIG="${ROOT_PATH}/.control-instance-config"
-API_FILES_NAME=""
+MODE="none"
+API_FILES_NAME="" # Define by user with the file with the API variables for Openstack
 
 [ ! -d "${FOLDER_CONFIG}" ] && mkdir -p "${FOLDER_CONFIG}"
 
@@ -14,6 +13,8 @@ while getopts 'p:m:' flag; do
     m) MODE="${OPTARG}" ;;
   esac
 done
+
+FOLDER_CONFIG="${ROOT_PATH}/.control-instance-config"
 
 printf "  Running the script in the path '%s'" "${ROOT_PATH}"
 printf "\n  Running in Mode '%s'" "${MODE}"
@@ -43,6 +44,7 @@ elif [ "${MODE}" == "start" ]; then
         source "${ROOT_PATH}/${API_FILE}"
 
         OUTPUT_FILE="${FOLDER_CONFIG}/${API_FILE/-openrc/}.txt"
+
         printf "\n          Executing instance %s" "${API_FILE}"
         printf "\n          Reading power off instances of %s" "${OUTPUT_FILE}"
 
